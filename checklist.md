@@ -1,32 +1,32 @@
 - [X] Make .gitignore file in root folder
 - [ ] Make readme.md file in root folder (optional, but recommended)
-- [ ] Make server folder in root folder
+- [x] Make server folder in root folder
     - [x] Make server.js file in server folder
     - [ ] Make modules folder
     - [x] Make public folder
         - [ ] Add favicon.ico file in public folder
         - [x] Make index.html in public folder
-            - [ ] Link "./styles/style.css"
-            - [ ] Source in "./vendors/jquery-3.6.0.js" above
-            - [ ] Source in "./scripts/client.js" 
+            - [x] Link "./styles/style.css"
+            - [x] Source in "./vendors/jquery-3.6.0.js" above
+            - [x] Source in "./scripts/client.js" 
         - [x] Make scripts folder
             - [x] Make client.js file here
                 - [ ] Make sure to source in jQuery
         - [x] Make styles folder
             - [x] Make style.css file here
-            - [ ] Source in bootstrap if you like
+            - [x] Source in bootstrap if you like
         - [x] Make vendors folder
             - [x] Add jQuery.js file here
 - [ ] HTML Needs
-    - [ ] Name h1
-    - [ ] calculator section
-        - [ ] Number1 input
-        - [ ] buttons for + - * /
-        - [ ] Number2 input
-        - [ ] button for = and clear
-    - [ ] result h2?
-    - [ ] history section
-        - [ ] ul for results
+    - [x] Name h1
+    - [x] calculator section
+        - [x] Number1 input
+        - [x] buttons for + - * /
+        - [x] Number2 input
+        - [x] button for = and clear
+    - [x] result h2?
+    - [x] history section
+        - [x] ul for results
 
 - [ ] client.js Needs
     - [ ] Click listeners for all buttons
