@@ -14,6 +14,8 @@ function handleReady() {
     $('#divide').on('click', divideButton);
     $('#equals').on('click', equalsButton);
     $('#clear').on('click', clearButton);
+
+
 }
 
 
@@ -61,13 +63,15 @@ function equalsButton() {
     }).then( function (response) {
         console.log(response);
         // run function to render DOM
-
+        answerRequest();
+        historyRequest();
         // clear inputs and empty object for next calculation
-        // needs testing
         $('input').val('');
         currentCalculation = {};
         console.log('should be a cleared object', currentCalculation);
-        
+    }).catch( function (error) {
+        console.log(error);
+        alert('Something went wrong, try again;');
     })
 }
 
@@ -76,4 +80,36 @@ function clearButton() {
     
 }
 
+
 // server requests
+function answerRequest() {
+    console.log('Requested Answer');
+    // get answer to most recent calculation from server
+    $.ajax({
+        type: 'GET',
+        url: '/calculation'
+    }).then( function (response) {
+        console.log(response);
+        // append recent calculation answer to DOM
+
+    }).catch( function (error) {
+        console.log(error);
+        alert('Something went wrong, try again;');
+    });
+}
+
+function historyRequest() {
+    console.log('Requested History');
+    // get updated history list from the server
+    $.ajax({
+        type: 'GET',
+        url: '/history'
+    }).then( function (response) {
+        console.log(response);
+        // append history to DOM
+        
+    }).catch( function (error) {
+        console.log(error);
+        alert('Something went wrong, try again;');
+    });
+}
