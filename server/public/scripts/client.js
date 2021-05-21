@@ -3,6 +3,7 @@ console.log('js running');
 $(handleReady);
 // global variables
 let currentCalculation = {};
+let answer;
 
 
 function handleReady() {
@@ -23,26 +24,26 @@ function handleReady() {
 function addButton() {
     // set operator for current calculation
     currentCalculation.operation = '+';
-    console.log('Operator:', currentCalculation.operation);
+    // console.log('Operator:', currentCalculation.operation);
     
 }
 
 function subtractButton() {
     // set operator for current calculation
     currentCalculation.operation = '-';
-    console.log('Operator:', currentCalculation.operation);
+    // console.log('Operator:', currentCalculation.operation);
 }
 
 function multiplyButton() {
     // set operator for current calculation
     currentCalculation.operation = '*';
-    console.log('Operator:', currentCalculation.operation);
+    // console.log('Operator:', currentCalculation.operation);
 }
 
 function divideButton() {
     // set operator for current calculation
     currentCalculation.operation = '/';
-    console.log('Operator:', currentCalculation.operation);
+    // console.log('Operator:', currentCalculation.operation);
 }
 
 function equalsButton() {
@@ -64,7 +65,10 @@ function equalsButton() {
         console.log(response);
         // run function to render DOM
         answerRequest();
-        historyRequest();
+        console.log('Answer is:', answer);
+        
+        // answerRequest();
+        // historyRequest();
         // clear inputs and empty object for next calculation
         $('input').val('');
         currentCalculation = {};
@@ -90,8 +94,10 @@ function answerRequest() {
         url: '/calculation'
     }).then( function (response) {
         console.log(response);
+        // set answer
+        answer = response.answer;
         // append recent calculation answer to DOM
-
+        
     }).catch( function (error) {
         console.log(error);
         alert('Something went wrong, try again;');
@@ -107,7 +113,7 @@ function historyRequest() {
     }).then( function (response) {
         console.log(response);
         // append history to DOM
-        
+
     }).catch( function (error) {
         console.log(error);
         alert('Something went wrong, try again;');
