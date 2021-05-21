@@ -30,14 +30,14 @@
 
 - [ ] client.js Needs
     - [x] Click listeners for all buttons
-        - [ ] save clicked value until equals submits to server
+        - [x] save clicked value until equals submits to server
             - [X] make as an object
-        - [ ] OPTION: highlight button when clicked?
-    - [ ] post request on equals to send calculation to server
+        - [x] OPTION: highlight button when clicked?
+    - [x] post request on equals to send calculation info to server
         - [X] gather clicked buttons as an object
             - [ ] OPTION: if a value is missing, error message?
-        - [ ] clear out client.js cache of values 
-        - [ ] clear inputs
+        - [x] clear out client.js cache of values 
+        - [x] clear inputs
         - [ ] inside post request then: get request for answer/history
     - [ ] get request for data
         - [ ] parse through data to find answer and history sections

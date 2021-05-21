@@ -16,9 +16,15 @@ app.get('/calculation', (req, res) => {
     console.log('getting from /calculation');
     // make an answer object and run calculations
     let answer = {
-        answer: theCalculator(calculationInfo)
+        answer: theCalculator(calculationInfo),
+        number1: calculationInfo.number1,
+        number2: calculationInfo.number2,
+        operation: calculationInfo.operation
     };
-
+    // push answer object to history
+    history.push(answer);
+    console.log(history);
+    // send back data to client.js
     res.send(answer);
     // reset info object for next calculation
     calculationInfo = {};
@@ -26,7 +32,7 @@ app.get('/calculation', (req, res) => {
 
 app.get('/history', (req, res) => {
     console.log('getting from /history');
-
+    // send back full history array
     res.send(history);
 })
 

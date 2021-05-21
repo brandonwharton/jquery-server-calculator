@@ -3,7 +3,7 @@ console.log('js running');
 $(handleReady);
 // global variables
 let currentCalculation = {};
-let answer;
+
 
 
 function handleReady() {
@@ -24,6 +24,10 @@ function handleReady() {
 function addButton() {
     // set operator for current calculation
     currentCalculation.operation = '+';
+    // clear all button highlights
+    buttonReset()
+    // highlight selected button
+    $(this).addClass('blueBtn');
     // console.log('Operator:', currentCalculation.operation);
     
 }
@@ -31,18 +35,30 @@ function addButton() {
 function subtractButton() {
     // set operator for current calculation
     currentCalculation.operation = '-';
+    // clear all button highlights
+    buttonReset()
+    // highlight selected button
+    $(this).addClass('blueBtn');
     // console.log('Operator:', currentCalculation.operation);
 }
 
 function multiplyButton() {
     // set operator for current calculation
     currentCalculation.operation = '*';
+    // clear all button highlights
+    buttonReset()
+    // highlight selected button
+    $(this).addClass('blueBtn');
     // console.log('Operator:', currentCalculation.operation);
 }
 
 function divideButton() {
     // set operator for current calculation
     currentCalculation.operation = '/';
+    // clear all button highlights
+    buttonReset()
+    // highlight selected button
+    $(this).addClass('blueBtn');
     // console.log('Operator:', currentCalculation.operation);
 }
 
@@ -63,15 +79,16 @@ function equalsButton() {
         data: currentCalculation
     }).then( function (response) {
         console.log(response);
-        // run function to render DOM
+        // take away button highlight
+        buttonReset();
+        // run functions to render DOM
         answerRequest();
-        console.log('Answer is:', answer);
-        
-        // answerRequest();
-        // historyRequest();
+        historyRequest();
+
         // clear inputs and empty object for next calculation
         $('input').val('');
         currentCalculation = {};
+
         console.log('should be a cleared object', currentCalculation);
     }).catch( function (error) {
         console.log(error);
@@ -94,10 +111,14 @@ function answerRequest() {
         url: '/calculation'
     }).then( function (response) {
         console.log(response);
-        // set answer
-        answer = response.answer;
+       
+        let el = $('#resultSection'); 
+        // empty the results area
+        el.empty();
         // append recent calculation answer to DOM
-        
+        el.append(`
+            <h2>Result: ${response.answer}</h2>
+        `);
     }).catch( function (error) {
         console.log(error);
         alert('Something went wrong, try again;');
@@ -112,10 +133,22 @@ function historyRequest() {
         url: '/history'
     }).then( function (response) {
         console.log(response);
-        // append history to DOM
-
+        
+        let el = $('#historySection');
+        // empty history from DOM
+        el.empty();
+        // append history to DOM by looping through history response
+        response.forEach (calc => {
+            el.append(`
+                <li>${calc.number1} ${calc.operation} ${calc.number2} = ${calc.answer}</li>
+            `)
+        }) // end forEach
     }).catch( function (error) {
         console.log(error);
         alert('Something went wrong, try again;');
     });
+}
+
+function buttonReset() {
+    $('button').removeClass('blueBtn')
 }

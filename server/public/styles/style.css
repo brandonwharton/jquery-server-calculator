@@ -2,3 +2,7 @@ body {
     margin: .5em;
     background-color: ivory;
 }
+
+.blueBtn {
+    background-color: lightblue;
+}
