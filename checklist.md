@@ -29,12 +29,12 @@
         - [x] ul for results
 
 - [ ] client.js Needs
-    - [ ] Click listeners for all buttons
+    - [x] Click listeners for all buttons
         - [ ] save clicked value until equals submits to server
             - [X] make as an object
         - [ ] OPTION: highlight button when clicked?
     - [ ] post request on equals to send calculation to server
-        - [ ] gather clicked buttons as an object
+        - [X] gather clicked buttons as an object
             - [ ] OPTION: if a value is missing, error message?
         - [ ] clear out client.js cache of values 
         - [ ] clear inputs
