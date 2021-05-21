@@ -1,0 +1,59 @@
+- [X] Make .gitignore file in root folder
+- [ ] Make readme.md file in root folder (optional, but recommended)
+- [ ] Make server folder in root folder
+    - [x] Make server.js file in server folder
+    - [ ] Make modules folder
+    - [x] Make public folder
+        - [ ] Add favicon.ico file in public folder
+        - [x] Make index.html in public folder
+            - [ ] Link "./styles/style.css"
+            - [ ] Source in "./vendors/jquery-3.6.0.js" above
+            - [ ] Source in "./scripts/client.js" 
+        - [x] Make scripts folder
+            - [x] Make client.js file here
+                - [ ] Make sure to source in jQuery
+        - [x] Make styles folder
+            - [x] Make style.css file here
+            - [ ] Source in bootstrap if you like
+        - [x] Make vendors folder
+            - [x] Add jQuery.js file here
+- [ ] HTML Needs
+    - [ ] Name h1
+    - [ ] calculator section
+        - [ ] Number1 input
+        - [ ] buttons for + - * /
+        - [ ] Number2 input
+        - [ ] button for = and clear
+    - [ ] result h2?
+    - [ ] history section
+        - [ ] ul for results
+
+- [ ] client.js Needs
+    - [ ] Click listeners for all buttons
+        - [ ] save clicked value until equals submits to server
+            - [ ] make as an object
+        - [ ] OPTION: highlight button when clicked?
+    - [ ] post request on equals to send calculation to server
+        - [ ] gather clicked buttons as an object
+            - [ ] OPTION: if a value is missing, error message?
+        - [ ] clear out client.js cache of values 
+        - [ ] clear inputs
+        - [ ] inside post request then: get request for answer/history
+    - [ ] get request for data
+        - [ ] parse through data to find answer and history sections
+        - [ ] empty HTML history
+        - [ ] append new information
+
+- [ ] server.js Needs:
+    - [ ] Current answer variable
+    - [ ] History array
+    - [ ] Post request handling:
+        - [ ] call function to do calculation with given number
+        - [ ] save recent answer to server
+        - [ ] save history to server
+    - [ ] Get request handling: 
+        - [ ] package most recent information
+        - [ ] send recent answer and history back to client.js
+
+
+
