@@ -15,7 +15,6 @@ app.get('/calculation', (req, res) => {
     console.log('getting from /calculation');
     // grab most recent answer to send to client.js
     res.send(history[history.length-1]);
-
 })
 
 app.get('/history', (req, res) => {
@@ -27,7 +26,8 @@ app.get('/history', (req, res) => {
 // POST requests
 app.post('/calculation', (req, res) => {
     console.log('posting to /calculation', req.body);
-    // store calculation information to server
+ 
+    // store calculation information on server
     let calcInfo = req.body;
     let answer = {
         answer: theCalculator(calcInfo),
@@ -35,10 +35,9 @@ app.post('/calculation', (req, res) => {
         number2: calcInfo.number2,
         operation: calcInfo.operation
     };
+
     // push answer object to history
     history.push(answer);
-    console.log(history);
-    
     res.sendStatus(200);
 });
 
