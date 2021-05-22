@@ -36,7 +36,7 @@ function handleReady() {
     historyRequest();
 }
 
-// checks the currentCalculation object and string to ensure proper syntax before running equalsButton
+// checks the currentCalculation object and string to ensure proper syntax before running a POST request
 function checkEquals () {
     // error message if full expression isn't used
     if (Object.keys(currentCalculation).length === 2 && !isNaN(Number(numString.charAt(numString.length-1)))  ) {
@@ -48,28 +48,21 @@ function checkEquals () {
         console.log('object inside of equals', currentCalculation);
         return
     }
-    let operandPosition = numString.search(currentCalculation.operation)
+    // find the position of the operand in numString
+    let operandPosition = numString.indexOf(currentCalculation.operation)
     console.log(operandPosition);
+
+    // find the second number entered and add it's value to currenCalculation object
+    let secondNumber = numString.substring(operandPosition+1);
+    console.log(secondNumber);
+    currentCalculation.number2 = secondNumber;
     
-
-
-    return
-    equalsButton();
+    // run equalsPost to POST data to server once object is checked and completed
+    equalsPost();
 }
 
 
-function equalsButton() {
-    // gather information to send to server
-
-
-
-    currentCalculation.number2 = $('#num2').val();
-    console.log('Numbers chosen: ', currentCalculation);
-    // make sure an operator was selected and both inputs full
-    if (Object.values(currentCalculation).includes('') || Object.keys(currentCalculation).length !== 3) {
-        console.log('insufficient inputs');
-        return;
-    }
+function equalsPost() {
     // POST information to server
     $.ajax({
         type: 'POST',
@@ -77,15 +70,13 @@ function equalsButton() {
         data: currentCalculation
     }).then( function (response) {
         console.log(response);
-        // take away button highlight
-        buttonReset();
+
         // run functions to render DOM
         answerRequest();
         historyRequest();
 
-        // reset calculation object here in case C button isn't pressed first
-        currentCalculation = {};
-
+        // reset everything using clearButton function
+        clearButton();
         console.log('should be a cleared object', currentCalculation);
     }).catch( function (error) {
         console.log(error);
@@ -154,47 +145,7 @@ function buttonReset() {
 }
 
 
-// button functions that affect input
-function addButton() {
-    // set operator for current calculation
-    currentCalculation.operation = '+';
-    // clear all button highlights
-    buttonReset()
-    // highlight selected button
-    $(this).addClass('blueBtn');
-    // console.log('Operator:', currentCalculation.operation);
-    
-}
 
-function subtractButton() {
-    // set operator for current calculation
-    currentCalculation.operation = '-';
-    // clear all button highlights
-    buttonReset()
-    // highlight selected button
-    $(this).addClass('blueBtn');
-    // console.log('Operator:', currentCalculation.operation);
-}
-
-function multiplyButton() {
-    // set operator for current calculation
-    currentCalculation.operation = '*';
-    // clear all button highlights
-    buttonReset()
-    // highlight selected button
-    $(this).addClass('blueBtn');
-    // console.log('Operator:', currentCalculation.operation);
-}
-
-function divideButton() {
-    // set operator for current calculation
-    currentCalculation.operation = '/';
-    // clear all button highlights
-    buttonReset()
-    // highlight selected button
-    $(this).addClass('blueBtn');
-    // console.log('Operator:', currentCalculation.operation);
-}
 
 function decimalButton() {
     console.log('clicked');
@@ -217,8 +168,12 @@ function operatorButton() {
     let clicked = $(this).text();
     
     console.log('object before logic:', currentCalculation);
-    // make a variable to ensure numString so far is a number
-    // let char = Number(numString);
+    // disallow operand if no numbers have been input
+    if (numString === '') {
+        console.log('enter a number first');
+        return;
+    }
+    // disallow operand if one has already been done
     if (Object.keys(currentCalculation).includes('operation')) {
         // Make this an error on DOM?
         console.log('Already have an operand');
@@ -251,3 +206,46 @@ function operatorButton() {
         
 }
 
+
+
+// // button functions that affect input
+// function addButton() {
+//     // set operator for current calculation
+//     currentCalculation.operation = '+';
+//     // clear all button highlights
+//     buttonReset()
+//     // highlight selected button
+//     $(this).addClass('blueBtn');
+//     // console.log('Operator:', currentCalculation.operation);
+    
+// }
+
+// function subtractButton() {
+//     // set operator for current calculation
+//     currentCalculation.operation = '-';
+//     // clear all button highlights
+//     buttonReset()
+//     // highlight selected button
+//     $(this).addClass('blueBtn');
+//     // console.log('Operator:', currentCalculation.operation);
+// }
+
+// function multiplyButton() {
+//     // set operator for current calculation
+//     currentCalculation.operation = '*';
+//     // clear all button highlights
+//     buttonReset()
+//     // highlight selected button
+//     $(this).addClass('blueBtn');
+//     // console.log('Operator:', currentCalculation.operation);
+// }
+
+// function divideButton() {
+//     // set operator for current calculation
+//     currentCalculation.operation = '/';
+//     // clear all button highlights
+//     buttonReset()
+//     // highlight selected button
+//     $(this).addClass('blueBtn');
+//     // console.log('Operator:', currentCalculation.operation);
+// }
