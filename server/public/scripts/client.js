@@ -31,6 +31,7 @@ function handleReady() {
     // commands
     $('#equals').on('click', checkEquals);
     $('#clear').on('click', clearButton);
+    $('#deleteHistory').on('click', deleteRequest)
 
     // load previous calculations on page refresh
     historyRequest();
@@ -174,6 +175,23 @@ function historyRequest() {
     });
 }
 
+
+function deleteRequest() {
+    console.log('Requested a delete to /history');
+    
+    $.ajax({
+        url: '/history',
+        type: 'DELETE',
+        success: (function (response) {
+            console.log(response);
+            // run a historyRequest to update DOM
+            historyRequest();      
+        })
+    }).catch(function (error) {
+        console.log(error);
+        alert('Something went wrong, try again;');
+    });
+}
 
 function errorMessage(input) {
     // empty any previous error messages

@@ -41,6 +41,13 @@ app.post('/calculation', (req, res) => {
     res.sendStatus(200);
 });
 
+// DELETE requests
+app.delete('/history', (req, res) => {
+    history = [];
+    res.send('Deleted history from server')
+})
+
+
 app.listen(PORT, () => {
     console.log('NOW RUNNING ON PORT:', PORT);
 });
