@@ -15,8 +15,8 @@ function handleReady() {
     $('#divide').on('click', divideButton);
     $('#equals').on('click', equalsButton);
     $('#clear').on('click', clearButton);
-
-
+    // load previous calculations
+    historyRequest();
 }
 
 
@@ -85,8 +85,7 @@ function equalsButton() {
         answerRequest();
         historyRequest();
 
-        // clear inputs and empty object for next calculation
-        $('input').val('');
+        // reset calculation object here in case C button isn't pressed first
         currentCalculation = {};
 
         console.log('should be a cleared object', currentCalculation);
@@ -98,7 +97,9 @@ function equalsButton() {
 
 function clearButton() {
     console.log('Clicked');
-    
+    // clear inputs and turn off operand highlight
+    $('input').val('');
+    buttonReset();
 }
 
 

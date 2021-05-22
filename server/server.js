@@ -4,8 +4,7 @@ const express = require('express');
 const app = express();
 const PORT = 5000;
 
-// placeholder for calculation info and history
-let calculationInfo = {};
+// placeholder for calculation history
 let history = [];
 
 app.use(express.static('server/public'));
@@ -14,20 +13,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // GET requests
 app.get('/calculation', (req, res) => {
     console.log('getting from /calculation');
-    // make an answer object and run calculations
-    let answer = {
-        answer: theCalculator(calculationInfo),
-        number1: calculationInfo.number1,
-        number2: calculationInfo.number2,
-        operation: calculationInfo.operation
-    };
-    // push answer object to history
-    history.push(answer);
-    console.log(history);
-    // send back data to client.js
-    res.send(answer);
-    // reset info object for next calculation
-    calculationInfo = {};
+    // grab most recent answer to send to client.js
+    res.send(history[history.length-1]);
+
 })
 
 app.get('/history', (req, res) => {
@@ -40,7 +28,17 @@ app.get('/history', (req, res) => {
 app.post('/calculation', (req, res) => {
     console.log('posting to /calculation', req.body);
     // store calculation information to server
-    calculationInfo = req.body;
+    let calcInfo = req.body;
+    let answer = {
+        answer: theCalculator(calcInfo),
+        number1: calcInfo.number1,
+        number2: calcInfo.number2,
+        operation: calcInfo.operation
+    };
+    // push answer object to history
+    history.push(answer);
+    console.log(history);
+    
     res.sendStatus(200);
 });
 
