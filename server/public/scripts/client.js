@@ -143,7 +143,7 @@ function answerRequest() {
         el.empty();
         // append recent calculation answer to results area
         el.append(`
-            <h2>Result: ${response.answer}</h2>
+            <h2 class="result">Result: ${response.answer}</h2>
         `);
     }).catch(function (error) {
         console.log(error);
@@ -166,10 +166,12 @@ function historyRequest() {
         // append history to DOM by looping through history response
         response.forEach(calc => {
             el.append(`
-                <li>${calc.number1} ${calc.operation} ${calc.number2} = ${calc.answer}</li>
-                <button id="deleteHistory">Delete History</button>
-            `)
+                <li class="historyItem">${calc.number1} ${calc.operation} ${calc.number2} = ${calc.answer}</li>
+            `);
         }) // end forEach
+        el.append(`
+            <button id="deleteHistory" class="btn btn-danger">Delete History</button>
+        `);
     }).catch(function (error) {
         console.log(error);
         alert('Something went wrong, try again;');
@@ -185,7 +187,11 @@ function deleteRequest() {
         type: 'DELETE',
         success: (function (response) {
             console.log(response);
-            // run a historyRequest to update DOM
+            // run answerRequest and historyRequest to update DOM
+            $('#resultSection').empty();
+            $('#resultSection').append(`
+                <h2 class="result">Result: </h2>
+            `)
             historyRequest();      
         })
     }).catch(function (error) {

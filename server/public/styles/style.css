@@ -3,6 +3,24 @@ body {
     background-color: ivory;
 }
 
-.blueBtn {
-    background-color: lightblue;
+.numBtn {
+    background-color: lightgrey;
+    color: black;
+    width: 40px;
+}
+
+.numRow {
+    margin-bottom: 3px;
+}
+
+#equals {
+    width: 40px;
+}
+
+.result {
+    margin-top: 6px;
+}
+
+.historyItem {
+    font-size: 1.3em;
 }
