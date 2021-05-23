@@ -23,7 +23,7 @@ You can view this project [here](https://jquery-server-calculator0.herokuapp.com
 
 ## Prerequisites
 
-- [Node.js] (https://nodejs.org/en/)
+- [Node.js](https://nodejs.org/en/)
 
 ## Installation
 
