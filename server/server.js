@@ -6,6 +6,8 @@ const PORT = 5000;
 
 // placeholder for calculation history
 let history = [];
+// import calculator function from its script
+const theCalculator = require('./modules/calculator.js');
 
 app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,23 +28,20 @@ app.get('/history', (req, res) => {
 // POST requests
 app.post('/calculation', (req, res) => {
     console.log('posting to /calculation', req.body);
- 
+    
     // store calculation information on server
     let calcInfo = req.body;
-    let answer = {
-        answer: theCalculator(calcInfo),
-        number1: calcInfo.number1,
-        number2: calcInfo.number2,
-        operation: calcInfo.operation
-    };
+    // run theCalculator on the POSTED data and save it to calcInfo
+    calcInfo.answer = theCalculator(calcInfo);
 
-    // push answer object to history
-    history.push(answer);
+    // push calcInfo object to history
+    history.push(calcInfo);
     res.sendStatus(200);
 });
 
 // DELETE requests
 app.delete('/history', (req, res) => {
+    // reset the history array when delete request is made
     history = [];
     res.send('Deleted history from server')
 })
@@ -53,27 +52,3 @@ app.listen(PORT, () => {
 });
 
 
-// calculation function
-function theCalculator(object) {
-    // set variables for the two numbers chosen
-    let num1 = Number(object.number1);
-    let num2 = Number(object.number2);
-    // use a switch to do the actual math
-    switch (object.operation) {
-        case '+':
-            return num1 + num2;
-            break;
-        case '-':
-            return num1 - num2;
-            break;
-        case '*':
-            return num1 * num2;
-            break;
-        case '/':
-            return num1 / num2;
-            break;
-        default:
-            console.log('Something went wrong in calculation');
-            break;
-    }
-}

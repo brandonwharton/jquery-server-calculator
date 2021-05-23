@@ -31,7 +31,7 @@ function handleReady() {
     // commands
     $('#equals').on('click', checkEquals);
     $('#clear').on('click', clearButton);
-    $('#deleteHistory').on('click', deleteRequest)
+    $('#historySection').on('click', '#deleteHistory', deleteRequest)
 
     // load previous calculations on page refresh
     historyRequest();
@@ -167,6 +167,7 @@ function historyRequest() {
         response.forEach(calc => {
             el.append(`
                 <li>${calc.number1} ${calc.operation} ${calc.number2} = ${calc.answer}</li>
+                <button id="deleteHistory">Delete History</button>
             `)
         }) // end forEach
     }).catch(function (error) {
