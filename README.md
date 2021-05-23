@@ -41,7 +41,7 @@ You can view this project [here](https://jquery-server-calculator0.herokuapp.com
 
 ## Acknowledgement
 
-Thanks to [Prime Digital Academy](www.primeacademy.io) for teaching me the necessary tools and
+Thanks to [Prime Digital Academy](https://www.primeacademy.io/) for teaching me the necessary tools and
 knowledge to get this project off the ground, along with the members of my cohort that helped ideate 
 and troubleshoot along the way. 
 
