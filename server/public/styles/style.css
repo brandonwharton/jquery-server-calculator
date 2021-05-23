@@ -23,4 +23,5 @@ body {
 
 .historyItem {
     font-size: 1.3em;
+    cursor: pointer;
 }

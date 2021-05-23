@@ -31,7 +31,8 @@ function handleReady() {
     // commands
     $('#equals').on('click', checkEquals);
     $('#clear').on('click', clearButton);
-    $('#historySection').on('click', '#deleteHistory', deleteRequest)
+    $('#historySection').on('click', '#deleteHistory', deleteRequest);
+    $('#historySection').on('click', '.historyItem', repeatCalculation);
 
     // load previous calculations on page refresh
     historyRequest();
@@ -165,8 +166,16 @@ function historyRequest() {
         el.empty();
         // append history to DOM by looping through history response
         response.forEach(calc => {
+            // set variables for each loop iteration
+            let ans = calc.answer;
+            let num1 = calc.number1;
+            let num2 = calc.number2;
+            let op = calc.operation;
+
             el.append(`
-                <li class="historyItem">${calc.number1} ${calc.operation} ${calc.number2} = ${calc.answer}</li>
+                <li class="historyItem" data-number1="${num1}" data-number2="${num2}" data-operation="${op}">
+                    ${num1} ${op} ${num2} = ${ans}
+                </li>
             `);
         }) // end forEach
         el.append(`
@@ -208,3 +217,13 @@ function errorMessage(input) {
         <h5>${input}</h5>
     `);
 }
+
+function repeatCalculation () {
+    console.log('Clicked!');
+    // set currentCalculation to the data saved on the history li
+    currentCalculation = $(this).data();
+
+    // post the calculation again to repeat it
+    equalsPost();
+}
+
