@@ -2,7 +2,6 @@
 const bodyParser = require('body-parser')
 const express = require('express');
 const app = express();
-// const PORT = process.env.PORT || 5000;
 
 // placeholder for calculation history
 let history = [];
@@ -48,7 +47,7 @@ app.delete('/history', (req, res) => {
 
 
 app.listen(process.env.PORT || 5000, () => {
-    console.log('NOW RUNNING ON PORT:',);
+    console.log('NOW RUNNING ON PORT:', 5000);
 });
 
 
