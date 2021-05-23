@@ -38,6 +38,7 @@ You can view this project [here](https://jquery-server-calculator0.herokuapp.com
 - JavaScript
 - jQuery/Ajax
 - Express
+- Bootstrap
 
 ## Acknowledgement
 
