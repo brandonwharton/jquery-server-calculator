@@ -100,7 +100,7 @@ function checkEquals() {
     }
     else {
         // display error message
-        errorMessage('Incomplete/Incorrect expression');
+        errorMessage('Incorrect or incomplete expression');
     }
 }
 
