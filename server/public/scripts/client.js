@@ -31,7 +31,7 @@ function handleReady() {
     // commands
     $('#equals').on('click', checkEquals);
     $('#clear').on('click', clearButton);
-    $('#historySection').on('click', '#deleteHistory', deleteRequest);
+    $('#deleteHistory').on('click', deleteRequest);
     $('#historySection').on('click', '.historyItem', repeatCalculation);
 
     // load previous calculations on page refresh
@@ -52,14 +52,19 @@ function numberButton() {
 // handle all operand buttons
 function operatorButton() {
 
-    // disallow operand if no numbers have been input or last input is a decimal point and display error message
-    if (numString === '' || numString.charAt(numString.length-1) === '.') {
-        errorMessage('Enter an integer or complete decimal');
+    // disallow operand if no numbers have been input and display error message
+    if (numString === '') {
+        errorMessage('Enter a number first');
         return;
     }
     // disallow operand if one has already been clicked and display error message
     if (Object.keys(currentCalculation).includes('operation')) {
-        errorMessage('Already have an operand')
+        errorMessage('Already have an operand');
+        return;
+    }
+    // disallow operand if the last entry is a decimal
+    if (numString.charAt(numString.length-1) === '.') {
+        errorMessage('Please start with an interger or complete decimal');
         return;
     }
 
@@ -178,9 +183,6 @@ function historyRequest() {
                 </li>
             `);
         }) // end forEach
-        el.append(`
-            <button id="deleteHistory" class="btn btn-danger">Delete History</button>
-        `);
     }).catch(function (error) {
         console.log(error);
         alert('Something went wrong, try again;');

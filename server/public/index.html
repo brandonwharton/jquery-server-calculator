@@ -14,46 +14,50 @@
     <header>
         <h1>Server Side Calculator</h1>
     </header>
-    <section id="topRow">
-        <input readonly type="text" id="numDisplay">
-        <button id="clear" class="btn btn-danger">C</button>
-    </section>
-    <div id='errorSection'></div>
-    
-    <section id="secondRow" class="numRow">
-        <button id="seven" class="btn btn-outline-secondary numBtn">7</button>
-        <button id="eight" class="btn btn-outline-secondary numBtn">8</button>
-        <button id="nine" class="btn btn-outline-secondary numBtn">9</button>
-        <button id="add" class="btn btn-outline-secondary numBtn">+</button>
-    </section>
-    
-    <section id="thirdRow" class="numRow">
-        <button id="four" class="btn btn-outline-secondary numBtn">4</button>
-        <button id="five" class="btn btn-outline-secondary numBtn">5</button>
-        <button id="six" class="btn btn-outline-secondary numBtn">6</button>
-        <button id="subtract" class="btn btn-outline-secondary numBtn">-</button>
-    </section>
-    
-    <section id="fourthRow" class="numRow">
-        <button id="one" class="btn btn-outline-secondary numBtn">1</button>
-        <button id="two" class="btn btn-outline-secondary numBtn">2</button>
-        <button id="three" class="btn btn-outline-secondary numBtn">3</button>
-        <button id="multiply" class="btn btn-outline-secondary numBtn">*</button>
-    </section>
-    
-    <section id="fifthRow">
-        <button id="zero" class="btn btn-outline-secondary numBtn">0</button>
-        <button id="decimal" class="btn btn-outline-secondary numBtn">.</button>
-        <button id="equals" class="btn btn-primary">=</button> 
-        <button id="divide" class="btn btn-outline-secondary numBtn">/</button>
-    </section>
-
-    <section id="resultSection">
-        <h2 class="result">Result:</h2>
-    </section>
-    <section id="historySection">
-        <ul id="history"> 
-        </ul>
-    </section>
+    <main>
+        <section class="calculatorArea">
+            <section id="topRow">
+                <input readonly type="text" id="numDisplay">
+                <button id="clear" class="btn btn-danger">C</button>
+            </section>
+            <section id="secondRow" class="numRow">
+                <button id="seven" class="btn btn-outline-secondary numBtn">7</button>
+                <button id="eight" class="btn btn-outline-secondary numBtn">8</button>
+                <button id="nine" class="btn btn-outline-secondary numBtn">9</button>
+                <button id="add" class="btn btn-outline-secondary numBtn">+</button>
+            </section>
+            
+            <section id="thirdRow" class="numRow">
+                <button id="four" class="btn btn-outline-secondary numBtn">4</button>
+                <button id="five" class="btn btn-outline-secondary numBtn">5</button>
+                <button id="six" class="btn btn-outline-secondary numBtn">6</button>
+                <button id="subtract" class="btn btn-outline-secondary numBtn">-</button>
+            </section>
+            
+            <section id="fourthRow" class="numRow">
+                <button id="one" class="btn btn-outline-secondary numBtn">1</button>
+                <button id="two" class="btn btn-outline-secondary numBtn">2</button>
+                <button id="three" class="btn btn-outline-secondary numBtn">3</button>
+                <button id="multiply" class="btn btn-outline-secondary numBtn">*</button>
+            </section>
+            
+            <section id="fifthRow">
+                <button id="zero" class="btn btn-outline-secondary numBtn">0</button>
+                <button id="decimal" class="btn btn-outline-secondary numBtn">.</button>
+                <button id="equals" class="btn btn-primary">=</button> 
+                <button id="divide" class="btn btn-outline-secondary numBtn">/</button>
+            </section>
+        </section>
+        
+        <div id='errorSection'></div>
+        <section id="resultSection">
+            <h2 class="result">Result:</h2>
+        </section>
+        <section id="historySection">
+            <ul id="history"> 
+            </ul>
+        </section>
+        <button id="deleteHistory" class="btn btn-danger">Delete History</button>
+    </main>
 </body>
 </html>
